@@ -16,22 +16,22 @@ public class Reservation {
         this.addOnServices = addOnServices;
     }
 
-    // 获取预订对应的航班
+
     public Flight getFlight() {
         return flight;
     }
 
-    // 获取预订的机票类别
+
     public TicketCategory getTicketCategory() {
         return ticketCategory;
     }
 
-    // 获取预订的附加服务列表
+
     public List<AddOnService> getAddOns() {
         return addOnServices;
     }
 
-    // 计算预订的总费用（机票基础价格 + 附加服务价格）
+    // Calculate the total cost of the reservation, including the base price and the cost of all add-on services
     public double calculateTotalCost() {
         double basePrice = ticketCategory.getBasePrice();
         double addOnCost = 0;

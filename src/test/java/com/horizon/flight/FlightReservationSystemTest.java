@@ -9,34 +9,34 @@ import java.util.List;
 public class FlightReservationSystemTest {
     @Test
     public void mainTest() {
-        // 创建航空公司
+        // Create an airline company
         AirlineCompany airline = new AirlineCompany("China Eastern Airlines");
 
-        // 创建航班
+        // Create a flight
         LocalDateTime departureTime = LocalDateTime.now().plusHours(2);
         LocalDateTime arrivalTime = departureTime.plusHours(3);
         Flight flight1 = new Flight("MU123", departureTime, arrivalTime, "Shanghai", "Beijing", 100);
         airline.addFlight(flight1);
 
-        // 创建乘客
+        // Init Passengers
         Passenger passenger1 = new Passenger("John Doe");
         Passenger passenger2 = new Passenger("Jane Smith");
 
-        // 创建可选附加服务列表
+        // Init AddOnServices
         List<AddOnService> addOnServices = new ArrayList<>();
         addOnServices.add(new AddOnService("Speedy Boarding", 10));
         addOnServices.add(new AddOnService("Seat Selection", 20));
 
-        // 乘客进行预订，确保传入有效的Flight对象
+        // Make reservations
         TicketCategory category = TicketCategory.ECONOMY;
         if (flight1!= null) {
             passenger1.makeReservation(flight1, category, addOnServices);
         }
 
-        // 航空公司延迟航班
+        // Delay flight
         airline.delayFlight(flight1, 30);
 
-        // 尝试修改预订（演示错误情况）
+        // Modify reservation ( demonstrate error case )
         Flight newFlight = new Flight("MU456", LocalDateTime.now().plusHours(1), LocalDateTime.now().plusHours(4), "Shanghai", "Guangzhou", 100);
         TicketCategory newCategory = TicketCategory.BUSINESS_CLASS;
         List<AddOnService> newAddOnServices = new ArrayList<>();
@@ -48,7 +48,7 @@ public class FlightReservationSystemTest {
             }
         }
 
-        // 正确修改预订（演示正常情况）
+        // Modify reservation ( demonstrate success case )
         newFlight = new Flight("MU123", flight1.getDepartureTime().plusHours(1), flight1.getArrivalTime().plusHours(1), "Shanghai", "Beijing", 100);
         if (passenger1.getReservations().size() > 0) {
             Reservation reservationToModify = passenger1.getReservations().get(0);
@@ -58,16 +58,16 @@ public class FlightReservationSystemTest {
             }
         }
 
-        // 航空公司检查接近满员的航班（假设阈值为80%）
+        // Check near full flights ( >= 80% capacity )
         List<Flight> nearFullFlights = airline.checkCapacityUtilization(80);
         for (Flight f : nearFullFlights) {
             System.out.println("main.Flight " + f.getFlightNumber() + " from " + f.getDepartureAirport() + " to " + f.getArrivalAirport() + " is near full.");
         }
 
-        // 航空公司取消航班
+        // Cancel flight
         airline.cancelFlight(flight1);
 
-        // 尝试取消不存在的预订（演示错误情况），创建虚拟Flight对象来构造Reservation
+        // Try to cancel non-existent reservation ( demonstrate error case ), create a dummy Flight object to construct Reservation
         Flight dummyFlight = new Flight("DummyFlightNumber", LocalDateTime.now(), LocalDateTime.now().plusHours(1), "DummyDeparture", "DummyArrival", 1);
         Reservation nonExistentReservation = new Reservation(dummyFlight, category, addOnServices);
         boolean cancelResult = passenger1.cancelReservation(nonExistentReservation, 10);
@@ -75,7 +75,5 @@ public class FlightReservationSystemTest {
             System.out.println("Failed to cancel non-existent reservation.");
         }
 
-        // 乘客加入忠诚度计划
-        passenger1.joinLoyaltyScheme();
     }
 }

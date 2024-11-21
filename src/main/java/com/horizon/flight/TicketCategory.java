@@ -12,7 +12,8 @@ public enum TicketCategory {
         this.basePrice = basePrice;
     }
 
-    // 获取机票类别的基础价格
+    // Get Base Price of the Ticket Category
+    // Base price is the price of the ticket without any add-on services
     public double getBasePrice() {
         return basePrice;
     }

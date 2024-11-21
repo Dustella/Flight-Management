@@ -19,17 +19,17 @@ public class Passenger {
         this.isLoyaltyMember = false;
     }
 
-    // 获取乘客姓名
+
     public String getName() {
         return name;
     }
 
-    // 获取乘客的所有预订列表
+    // Get all reservations of the passenger
     public List<Reservation> getReservations() {
         return reservations;
     }
 
-    // 判断乘客是否是忠诚度会员
+    // Check if the passenger is a loyalty member
     public boolean isLoyaltyMember() {
         return isLoyaltyMember;
     }
@@ -39,7 +39,7 @@ public class Passenger {
         isLoyaltyMember = true;
     }
 
-    // 乘客预订航班（检查航班是否可预订、时间冲突等）
+    // Check for any time conflicts with existing reservations
     public boolean makeReservation(Flight f, TicketCategory category, List<AddOnService> addOnServices) {
         if (!f.isOpenForReservation()) {
             System.out.println("main.Flight is not open for reservation.");
@@ -56,7 +56,7 @@ public class Passenger {
         return f.addPassenger(this);
     }
 
-    // 乘客取消指定的预订（处理相关逻辑，如从航班移除等）
+    // Cancel a reservation
     public boolean cancelReservation(Reservation r, double fee) {
         if (reservations.remove(r)) {
             r.getFlight().removePassenger(this);
@@ -66,7 +66,7 @@ public class Passenger {
         return false;
     }
 
-    // 根据航班对象取消对应的所有预订（用于航班取消时调用）
+    // called when a flight is cancelled, remove all reservations for the flight
     public void cancelReservationByFlight(Flight f) {
         List<Reservation> toRemove = new ArrayList<>();
         for (Reservation reservation : reservations) {
@@ -87,16 +87,16 @@ public class Passenger {
             return false;
         }
 
-        // 先从原航班移除乘客
+        // First remove the passenger from the current flight
         r.getFlight().removePassenger(this);
 
-        // 创建新的 main.Reservation 对象，确保属性都正确设置
+        // Create a new reservation with the updated flight, category and add-on services
         Reservation updatedReservation = new Reservation(newFlight, newCategory, newAddOnServices);
 
-        // 替换原预订列表中的元素，这里使用正确获取到的索引
+        // Update the reservation in the list
         reservations.set(index, updatedReservation);
 
-        // 将乘客添加到新航班（这里添加了一些额外的逻辑判断，如果添加失败可以返回 false 并进行相应处理）
+        // Add the passenger to the new flight, if not successful, revert the reservation
         if (!newFlight.addPassenger(this)) {
             System.out.println("Failed to add passenger to the new flight.");
             return false;

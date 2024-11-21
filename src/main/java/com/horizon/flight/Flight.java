@@ -45,32 +45,28 @@ public class Flight {
         return departureAirport;
     }
 
-    // 获取到达机场
     public String getArrivalAirport() {
         return arrivalAirport;
     }
-
-    // 获取航班容量
     public int getCapacity() {
         return capacity;
     }
 
-    // 获取已预订该航班的乘客列表
     public List<Passenger> getPassengers() {
         return passengers;
     }
 
-    // 判断航班是否开放预订
+    // 获取航班是否开放预订
     public boolean isOpenForReservation() {
         return isOpenForReservation;
     }
 
-    // 设置航班是否开放预订
+    // Set the open for reservation status
     public void setOpenForReservation(boolean openForReservation) {
         isOpenForReservation = openForReservation;
     }
 
-    // 添加乘客到航班（检查容量和预订状态）
+    // Add a passenger to the flight, if the flight is full or not open for reservation, throw an exception
     public boolean addPassenger(Passenger p) {
         if (isFull() || !isOpenForReservation) {
             throw new IllegalStateException("main.Flight is full or not open for reservation.");
@@ -81,7 +77,7 @@ public class Flight {
 
     }
 
-    // 从航班移除乘客
+    // Remove a passenger from the flight
     public boolean removePassenger(Passenger p) {
         return passengers.remove(p);
     }
@@ -91,13 +87,13 @@ public class Flight {
         return passengers.size() == capacity;
     }
 
-    // 检查给定时间范围是否与本航班时间冲突
+    // Check if the flight has a time conflict with another flight
     public boolean hasTimeConflict(LocalDateTime otherDepartureTime, LocalDateTime otherArrivalTime) {
         return (otherDepartureTime.isBefore(this.arrivalTime) && otherArrivalTime.isAfter(this.departureTime))
                 || (otherDepartureTime.isEqual(this.departureTime) || otherArrivalTime.isEqual(this.arrivalTime));
     }
 
-    // 获取航班剩余可预订座位数
+    // Get the number of available seats on the flight
     public int getAvailableSeats() {
         return capacity - passengers.size();
     }
@@ -106,7 +102,7 @@ public class Flight {
         return getAvailableSeats() > 0;
     }
 
-    // 设置出发时间的方法
+
     public void setDepartureTime(LocalDateTime newDepartureTime) {
 //      departure time should not be in the past, and arrival time should be after departure time
         if (newDepartureTime.isBefore(LocalDateTime.now()) || newDepartureTime.isAfter(arrivalTime)) {
@@ -116,7 +112,6 @@ public class Flight {
         this.departureTime = newDepartureTime;
     }
 
-    // 设置到达时间的方法
     public void setArrivalTime(LocalDateTime newArrivalTime) {
 //        arrival time should be after departure time, and not in the past
         if (newArrivalTime.isBefore(departureTime) || newArrivalTime.isBefore(LocalDateTime.now())) {

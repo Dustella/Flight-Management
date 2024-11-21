@@ -13,17 +13,17 @@ public class AirlineCompany {
         this.flights = new ArrayList<>();
     }
 
-    // 获取航空公司名称
+
     public String getName() {
         return name;
     }
 
-    // 获取航空公司运营的所有航班列表
+
     public List<Flight> getFlights() {
         return flights;
     }
 
-    // 添加航班到航空公司的运营列表
+
     public void addFlight(Flight f) {
         if (f == null) {
             throw new IllegalArgumentException("main.Flight cannot be null when adding to main.AirlineCompany.");
@@ -31,7 +31,7 @@ public class AirlineCompany {
         flights.add(f);
     }
 
-    // 从航空公司运营列表取消航班（同时移除所有相关乘客预订）
+    // Remove a flight from the airline company, and cancel reservations for all passengers
     public void cancelFlight(Flight f) {
         if (f == null) {
             throw new IllegalArgumentException("main.Flight cannot be null when cancelling from main.AirlineCompany.");
@@ -43,7 +43,7 @@ public class AirlineCompany {
         flights.remove(f);
     }
 
-    // 延迟航班（更新出发和到达时间，并通知乘客）
+    // Delay a flight by a given number of minutes, and notify passengers
     public void delayFlight(Flight f, int minutes) {
         LocalDateTime newDepartureTime = f.getDepartureTime().plusMinutes(minutes);
         LocalDateTime newArrivalTime = f.getArrivalTime().plusMinutes(minutes);
@@ -56,7 +56,7 @@ public class AirlineCompany {
         }
     }
 
-    // 根据给定的容量利用率阈值，查找接近满员的航班列表
+    // Check flights with capacity utilization greater than or equal to the given threshold percentage
     public List<Flight> checkCapacityUtilization(int thresholdPercentage) {
 //        do checks for input percentage
         if (thresholdPercentage < 0 || thresholdPercentage > 100) {
@@ -74,7 +74,7 @@ public class AirlineCompany {
         return nearFullFlights;
     }
 
-    // 根据航班号查找航班
+    // Find a flight by its flight number
     public Flight findFlightByNumber(String flightNumber) {
         for (Flight flight : flights) {
             if (flight.getFlightNumber().equals(flightNumber)) {
