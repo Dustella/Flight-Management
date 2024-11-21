@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +73,7 @@ public class Flight {
     // 添加乘客到航班（检查容量和预订状态）
     public boolean addPassenger(Passenger p) {
         if (isFull() || !isOpenForReservation) {
-            throw new IllegalStateException("Flight is full or not open for reservation.");
+            throw new IllegalStateException("main.Flight is full or not open for reservation.");
         }
 
         passengers.add(p);

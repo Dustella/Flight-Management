@@ -1,3 +1,6 @@
+package com.horizon.flight;
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +52,14 @@ public class FlightReservationSystemTest {
             Reservation reservationToModify = passenger1.getReservations().get(0);
             boolean modifyResult = passenger1.modifyReservation(reservationToModify, newFlight, newCategory, newAddOnServices, 50);
             if (modifyResult) {
-                System.out.println("Reservation modified successfully.");
+                System.out.println("main.Reservation modified successfully.");
             }
         }
 
         // 航空公司检查接近满员的航班（假设阈值为80%）
         List<Flight> nearFullFlights = airline.checkCapacityUtilization(80);
         for (Flight f : nearFullFlights) {
-            System.out.println("Flight " + f.getFlightNumber() + " from " + f.getDepartureAirport() + " to " + f.getArrivalAirport() + " is near full.");
+            System.out.println("main.Flight " + f.getFlightNumber() + " from " + f.getDepartureAirport() + " to " + f.getArrivalAirport() + " is near full.");
         }
 
         // 航空公司取消航班

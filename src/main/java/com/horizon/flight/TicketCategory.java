@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 public enum TicketCategory {
     ECONOMY(100),
     PREMIUM_ECONOMY(200),

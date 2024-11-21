@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class AirlineCompany {
     // 添加航班到航空公司的运营列表
     public void addFlight(Flight f) {
         if (f == null) {
-            throw new IllegalArgumentException("Flight cannot be null when adding to AirlineCompany.");
+            throw new IllegalArgumentException("main.Flight cannot be null when adding to main.AirlineCompany.");
         }
         flights.add(f);
     }
@@ -32,7 +34,7 @@ public class AirlineCompany {
     // 从航空公司运营列表取消航班（同时移除所有相关乘客预订）
     public void cancelFlight(Flight f) {
         if (f == null) {
-            throw new IllegalArgumentException("Flight cannot be null when cancelling from AirlineCompany.");
+            throw new IllegalArgumentException("main.Flight cannot be null when cancelling from main.AirlineCompany.");
         }
 
         for (Passenger passenger : f.getPassengers()) {

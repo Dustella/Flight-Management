@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class Passenger {
     // 乘客预订航班（检查航班是否可预订、时间冲突等）
     public boolean makeReservation(Flight f, TicketCategory category, List<AddOnService> addOnServices) {
         if (!f.isOpenForReservation()) {
-            System.out.println("Flight is not open for reservation.");
+            System.out.println("main.Flight is not open for reservation.");
             return false;
         }
         for (Reservation reservation : reservations) {
@@ -81,14 +83,14 @@ public class Passenger {
     public boolean modifyReservation(Reservation r, Flight newFlight, TicketCategory newCategory, List<AddOnService> newAddOnServices, double fee) {
         int index = reservations.indexOf(r);
         if (index == -1) {
-            System.out.println("Reservation not found.");
+            System.out.println("main.Reservation not found.");
             return false;
         }
 
         // 先从原航班移除乘客
         r.getFlight().removePassenger(this);
 
-        // 创建新的 Reservation 对象，确保属性都正确设置
+        // 创建新的 main.Reservation 对象，确保属性都正确设置
         Reservation updatedReservation = new Reservation(newFlight, newCategory, newAddOnServices);
 
         // 替换原预订列表中的元素，这里使用正确获取到的索引

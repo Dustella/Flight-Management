@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 public class AddOnService {
     private String name;
     private double price;

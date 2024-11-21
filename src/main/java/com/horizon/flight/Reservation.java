@@ -1,3 +1,5 @@
+package com.horizon.flight;
+
 import java.util.List;
 
 public class Reservation {
@@ -7,7 +9,7 @@ public class Reservation {
 
     public Reservation(Flight flight, TicketCategory ticketCategory, List<AddOnService> addOnServices) {
         if (flight == null) {
-            throw new IllegalArgumentException("Flight cannot be null when creating a Reservation.");
+            throw new IllegalArgumentException("main.Flight cannot be null when creating a main.Reservation.");
         }
         this.flight = flight;
         this.ticketCategory = ticketCategory;
