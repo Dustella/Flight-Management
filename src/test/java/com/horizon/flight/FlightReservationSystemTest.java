@@ -1,12 +1,14 @@
 package com.horizon.flight;
 
 
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 public class FlightReservationSystemTest {
-    public static void main(String[] args) {
+    @Test
+    public void mainTest() {
         // 创建航空公司
         AirlineCompany airline = new AirlineCompany("China Eastern Airlines");
 
