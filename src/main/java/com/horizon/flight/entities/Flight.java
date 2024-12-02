@@ -1,4 +1,4 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +14,8 @@ public class Flight {
     private List<Passenger> passengers;
     private boolean isOpenForReservation;
 
-    public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureAirport, String arrivalAirport, int capacity) {
+    public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureAirport,
+            String arrivalAirport, int capacity) {
         this.flightNumber = flightNumber;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -48,6 +49,7 @@ public class Flight {
     public String getArrivalAirport() {
         return arrivalAirport;
     }
+
     public int getCapacity() {
         return capacity;
     }
@@ -66,7 +68,8 @@ public class Flight {
         isOpenForReservation = openForReservation;
     }
 
-    // Add a passenger to the flight, if the flight is full or not open for reservation, throw an exception
+    // Add a passenger to the flight, if the flight is full or not open for
+    // reservation, throw an exception
     public boolean addPassenger(Passenger p) {
         if (isFull() || !isOpenForReservation) {
             throw new IllegalStateException("main.Flight is full or not open for reservation.");
@@ -102,9 +105,9 @@ public class Flight {
         return getAvailableSeats() > 0;
     }
 
-
     public void setDepartureTime(LocalDateTime newDepartureTime) {
-//      departure time should not be in the past, and arrival time should be after departure time
+        // departure time should not be in the past, and arrival time should be after
+        // departure time
         if (newDepartureTime.isBefore(LocalDateTime.now()) || newDepartureTime.isAfter(arrivalTime)) {
             throw new IllegalArgumentException("Invalid departure time.");
         }
@@ -113,7 +116,7 @@ public class Flight {
     }
 
     public void setArrivalTime(LocalDateTime newArrivalTime) {
-//        arrival time should be after departure time, and not in the past
+        // arrival time should be after departure time, and not in the past
         if (newArrivalTime.isBefore(departureTime) || newArrivalTime.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Invalid arrival time.");
         }

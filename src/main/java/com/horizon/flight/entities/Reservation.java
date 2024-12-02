@@ -1,4 +1,4 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 import java.util.List;
 
@@ -16,22 +16,20 @@ public class Reservation {
         this.addOnServices = addOnServices;
     }
 
-
     public Flight getFlight() {
         return flight;
     }
-
 
     public TicketCategory getTicketCategory() {
         return ticketCategory;
     }
 
-
     public List<AddOnService> getAddOns() {
         return addOnServices;
     }
 
-    // Calculate the total cost of the reservation, including the base price and the cost of all add-on services
+    // Calculate the total cost of the reservation, including the base price and the
+    // cost of all add-on services
     public double calculateTotalCost() {
         double basePrice = ticketCategory.getBasePrice();
         double addOnCost = 0;
@@ -43,8 +41,10 @@ public class Reservation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass()!= o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Reservation that = (Reservation) o;
         return flight.equals(that.flight) &&
                 ticketCategory == that.ticketCategory &&

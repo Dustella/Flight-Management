@@ -1,4 +1,4 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 public enum TicketCategory {
     ECONOMY(100),

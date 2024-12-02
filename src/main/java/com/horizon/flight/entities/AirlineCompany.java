@@ -1,4 +1,4 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

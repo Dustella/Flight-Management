@@ -3,6 +3,13 @@ package com.horizon.flight;
 
 import org.junit.jupiter.api.Test;
 
+import com.horizon.flight.entities.AddOnService;
+import com.horizon.flight.entities.AirlineCompany;
+import com.horizon.flight.entities.Flight;
+import com.horizon.flight.entities.Passenger;
+import com.horizon.flight.entities.Reservation;
+import com.horizon.flight.entities.TicketCategory;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

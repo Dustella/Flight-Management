@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.horizon.flight.entities.AddOnService;
+import com.horizon.flight.entities.Flight;
+import com.horizon.flight.entities.Passenger;
+import com.horizon.flight.entities.Reservation;
+import com.horizon.flight.entities.TicketCategory;
+
 public class PassengerTest {
 
     private Passenger passenger;

@@ -1,24 +1,23 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Passenger {
-//
-    public  static Integer passengerCount = 0;
+    //
+    public static Integer passengerCount = 0;
     private String name;
     private List<Reservation> reservations;
-    private  Integer ID;
+    private Integer ID;
     private boolean isLoyaltyMember;
 
     public Passenger(String name) {
         this.name = name;
-        passengerCount+=1;
+        passengerCount += 1;
         this.ID = passengerCount;
         this.reservations = new ArrayList<>();
         this.isLoyaltyMember = false;
     }
-
 
     public String getName() {
         return name;
@@ -46,7 +45,8 @@ public class Passenger {
             return false;
         }
         for (Reservation reservation : reservations) {
-            if (f.hasTimeConflict(reservation.getFlight().getDepartureTime(), reservation.getFlight().getArrivalTime())) {
+            if (f.hasTimeConflict(reservation.getFlight().getDepartureTime(),
+                    reservation.getFlight().getArrivalTime())) {
                 System.out.println("Time conflict with existing reservation.");
                 return false;
             }
@@ -60,7 +60,8 @@ public class Passenger {
     public boolean cancelReservation(Reservation r, double fee) {
         if (reservations.remove(r)) {
             r.getFlight().removePassenger(this);
-            // TODO: we can add logic to deduct fee from account balance, but we will skip it for now
+            // TODO: we can add logic to deduct fee from account balance, but we will skip
+            // it for now
             return true;
         }
         return false;
@@ -79,8 +80,10 @@ public class Passenger {
         }
     }
 
-//    modify current reservation, remove passenger from current flight, add passenger to new flight
-    public boolean modifyReservation(Reservation r, Flight newFlight, TicketCategory newCategory, List<AddOnService> newAddOnServices, double fee) {
+    // modify current reservation, remove passenger from current flight, add
+    // passenger to new flight
+    public boolean modifyReservation(Reservation r, Flight newFlight, TicketCategory newCategory,
+            List<AddOnService> newAddOnServices, double fee) {
         int index = reservations.indexOf(r);
         if (index == -1) {
             System.out.println("main.Reservation not found.");
@@ -90,13 +93,15 @@ public class Passenger {
         // First remove the passenger from the current flight
         r.getFlight().removePassenger(this);
 
-        // Create a new reservation with the updated flight, category and add-on services
+        // Create a new reservation with the updated flight, category and add-on
+        // services
         Reservation updatedReservation = new Reservation(newFlight, newCategory, newAddOnServices);
 
         // Update the reservation in the list
         reservations.set(index, updatedReservation);
 
-        // Add the passenger to the new flight, if not successful, revert the reservation
+        // Add the passenger to the new flight, if not successful, revert the
+        // reservation
         if (!newFlight.addPassenger(this)) {
             System.out.println("Failed to add passenger to the new flight.");
             return false;

@@ -1,4 +1,4 @@
-package com.horizon.flight;
+package com.horizon.flight.entities;
 
 public class AddOnService {
     private String name;
