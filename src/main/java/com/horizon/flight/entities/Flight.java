@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flight {
-    private String flightNumber;
+    private final String flightNumber;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private String departureAirport;
-    private String arrivalAirport;
-    private int capacity;
-    private List<Passenger> passengers;
+    private final String departureAirport;
+    private final String arrivalAirport;
+    private final int capacity;
+    private final List<Passenger> passengers;
     private boolean isOpenForReservation;
 
     public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureAirport,

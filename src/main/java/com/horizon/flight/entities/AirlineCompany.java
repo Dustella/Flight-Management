@@ -5,24 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AirlineCompany {
-    private String name;
-    private List<Flight> flights;
+    private final String name;
+    private final List<Flight> flights;
 
     public AirlineCompany(String name) {
         this.name = name;
         this.flights = new ArrayList<>();
     }
 
-
     public String getName() {
         return name;
     }
 
-
     public List<Flight> getFlights() {
         return flights;
     }
-
 
     public void addFlight(Flight f) {
         if (f == null) {
@@ -31,7 +28,8 @@ public class AirlineCompany {
         flights.add(f);
     }
 
-    // Remove a flight from the airline company, and cancel reservations for all passengers
+    // Remove a flight from the airline company, and cancel reservations for all
+    // passengers
     public void cancelFlight(Flight f) {
         if (f == null) {
             throw new IllegalArgumentException("main.Flight cannot be null when cancelling from main.AirlineCompany.");
@@ -52,13 +50,16 @@ public class AirlineCompany {
 
         // 通知乘客航班延迟，这里简单打印消息，实际可替换为合适的通知机制
         for (Passenger passenger : f.getPassengers()) {
-            System.out.println("Dear " + passenger.getName() + ", your flight " + f.getFlightNumber() + " from " + f.getDepartureAirport() + " to " + f.getArrivalAirport() + " has been delayed by " + minutes + " minutes.");
+            System.out.println("Dear " + passenger.getName() + ", your flight " + f.getFlightNumber() + " from "
+                    + f.getDepartureAirport() + " to " + f.getArrivalAirport() + " has been delayed by " + minutes
+                    + " minutes.");
         }
     }
 
-    // Check flights with capacity utilization greater than or equal to the given threshold percentage
+    // Check flights with capacity utilization greater than or equal to the given
+    // threshold percentage
     public List<Flight> checkCapacityUtilization(int thresholdPercentage) {
-//        do checks for input percentage
+        // do checks for input percentage
         if (thresholdPercentage < 0 || thresholdPercentage > 100) {
             throw new IllegalArgumentException("Invalid threshold percentage.");
         }

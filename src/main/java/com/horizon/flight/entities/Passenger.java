@@ -7,9 +7,13 @@ public class Passenger {
     //
     public static Integer passengerCount = 0;
     private String name;
-    private List<Reservation> reservations;
-    private Integer ID;
+    private final List<Reservation> reservations;
+    private final Integer ID;
     private boolean isLoyaltyMember;
+
+    public void setName(String newName) {
+        this.name = newName;
+    }
 
     public Passenger(String name) {
         this.name = name;

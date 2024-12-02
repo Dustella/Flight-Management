@@ -6,7 +6,7 @@ public enum TicketCategory {
     BUSINESS_CLASS(300),
     FIRST_CLASS(500);
 
-    private double basePrice;
+    private final double basePrice;
 
     TicketCategory(double basePrice) {
         this.basePrice = basePrice;
