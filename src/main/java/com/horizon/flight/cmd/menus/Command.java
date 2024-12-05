@@ -1,7 +1,7 @@
-package com.horizon.flight.cmd;
+package com.horizon.flight.cmd.menus;
 
 public interface Command {
-    String execute(String... args);
+    String execute(String... args) throws Exception;
 
     String getDescription();
 }

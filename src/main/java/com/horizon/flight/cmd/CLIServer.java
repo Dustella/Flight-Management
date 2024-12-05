@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.horizon.flight.cmd.menus.FlightMenu;
+import com.horizon.flight.cmd.menus.Menu;
+
 public class CLIServer {
     private final Map<String, Menu> menus = new HashMap<>();
     private final ServerSocket serverSocket;
@@ -24,8 +27,8 @@ public class CLIServer {
     }
 
     private void initializeMenus() {
-        DatabaseMenu dbMenu = new DatabaseMenu();
-        menus.put(dbMenu.getName(), dbMenu);
+        var dbMenu = new FlightMenu();
+        menus.put(dbMenu.getName(), (Menu) dbMenu);
     }
 
     public void start() {

@@ -1,4 +1,4 @@
-package com.horizon.flight.cmd;
+package com.horizon.flight.cmd.menus;
 
 public interface Menu {
     String getName();
