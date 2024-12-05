@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class CLIClient {
     private final String serverAddress;
@@ -48,13 +52,17 @@ public class CLIClient {
         char[] buffer = new char[1024];
 
         // Wait briefly for data to arrive
-        while (!in.ready()) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        try {
+            while (!in.ready()) {
+                scheduler.schedule(() -> {
+                }, 50, TimeUnit.MILLISECONDS).get();
             }
+        } catch (InterruptedException | ExecutionException e) {
+            Thread.currentThread().interrupt();
+            return;
+        } finally {
+            scheduler.shutdown();
         }
 
         // Read all available data
