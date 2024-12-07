@@ -13,6 +13,7 @@ public class Flight {
     private final int capacity;
     private final List<Passenger> passengers;
     private boolean isOpenForReservation;
+    private List<AddOnService> services; // 用于存储航班提供的增值服务
 
     public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureAirport,
             String arrivalAirport, int capacity) {
@@ -24,6 +25,7 @@ public class Flight {
         this.capacity = capacity;
         this.passengers = new ArrayList<>();
         this.isOpenForReservation = true;
+        this.services = new ArrayList<>(); // 初始化为空列表
     }
 
     // 获取航班号
@@ -83,6 +85,27 @@ public class Flight {
     // Remove a passenger from the flight
     public boolean removePassenger(Passenger p) {
         return passengers.remove(p);
+    }
+
+    //取消机票
+    public boolean cancelTicket(Passenger passenger) {
+        return passengers.remove(passenger);
+    }
+    //订票
+    public boolean bookTicket(Passenger passenger) {
+        if (passengers.size() < capacity && !passengers.contains(passenger)) {
+            passengers.add(passenger);
+            return true;
+        }
+        return false;
+    }
+    // 预订增值服务
+    public boolean bookService(AddOnService service) {
+        if (services.contains(service)) {
+            return false; // 服务已经被预订
+        }
+        services.add(service);
+        return true;
     }
 
     // 判断航班是否已满员

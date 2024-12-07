@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 
 import com.horizon.flight.cmd.menus.FlightMenu;
 import com.horizon.flight.cmd.menus.Menu;
+import com.horizon.flight.cmd.menus.PassengerMenu;
 
 public class CLIServer {
     private final Map<String, Menu> menus = new HashMap<>();
@@ -27,8 +28,10 @@ public class CLIServer {
     }
 
     private void initializeMenus() {
-        var dbMenu = new FlightMenu();
-        menus.put(dbMenu.getName(), (Menu) dbMenu);
+        Menu dbMenu = new FlightMenu();
+        Menu passengerMenu = new PassengerMenu();
+        menus.put(dbMenu.getName(), dbMenu);
+        menus.put(passengerMenu.getName(), passengerMenu);
     }
 
     public void start() {
