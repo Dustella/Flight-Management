@@ -87,11 +87,12 @@ public class Flight {
         return passengers.remove(p);
     }
 
-    //取消机票
+    // 取消机票
     public boolean cancelTicket(Passenger passenger) {
         return passengers.remove(passenger);
     }
-    //订票
+
+    // 订票
     public boolean bookTicket(Passenger passenger) {
         if (passengers.size() < capacity && !passengers.contains(passenger)) {
             passengers.add(passenger);
@@ -99,6 +100,7 @@ public class Flight {
         }
         return false;
     }
+
     // 预订增值服务
     public boolean bookService(AddOnService service) {
         if (services.contains(service)) {
@@ -145,5 +147,20 @@ public class Flight {
         }
 
         this.arrivalTime = newArrivalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightNumber='" + flightNumber + '\'' +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", departureAirport='" + departureAirport + '\'' +
+                ", arrivalAirport='" + arrivalAirport + '\'' +
+                ", capacity=" + capacity +
+                ", passengers=" + passengers.size() +
+                ", isOpenForReservation=" + isOpenForReservation +
+                ", services=" + services +
+                '}';
     }
 }

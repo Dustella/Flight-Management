@@ -84,4 +84,21 @@ public class AirlineCompany {
         }
         return null;
     }
+    public boolean cancelFlightByNumber(String flightNumber) {
+        if (flightNumber == null || flightNumber.isEmpty()) {
+            throw new IllegalArgumentException("Flight number cannot be null or empty.");
+        }
+
+        // Find the flight by its flight number
+        for (Flight flight : flights) {
+            if (flight.getFlightNumber().equals(flightNumber)) {
+                // Cancel the flight and remove it from the list
+                cancelFlight(flight);
+                return true; // Return true if the flight was successfully cancelled
+            }
+        }
+
+        return false; // Return false if no flight with the given flight number was found
+    }
+
 }

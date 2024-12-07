@@ -39,10 +39,10 @@ public class Storage {
         addons.put("A2", addon2);
 
         // Adding dummy flights
-        Flight flight1 = new Flight("HA123", LocalDateTime.of(2023, 10, 10, 10, 0),
-                LocalDateTime.of(2023, 10, 10, 14, 0), "HK", "SHH", 150);
-        Flight flight2 = new Flight("SHA456", LocalDateTime.of(2023, 11, 15, 16, 0),
-                LocalDateTime.of(2023, 11, 15, 20, 0), "SHH", "HK", 200);
+        Flight flight1 = new Flight("HA123", LocalDateTime.of(2025, 10, 10, 10, 0),
+                LocalDateTime.of(2025, 10, 10, 14, 0), "HK", "SHH", 150);
+        Flight flight2 = new Flight("SHA456", LocalDateTime.of(2025, 11, 15, 16, 0),
+                LocalDateTime.of(2025, 11, 15, 20, 0), "SHH", "HK", 200);
 
         company1.addFlight(flight1);
         company2.addFlight(flight2);
