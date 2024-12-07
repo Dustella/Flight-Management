@@ -85,6 +85,10 @@ public class Storage {
         return passengers.get(id);
     }
 
+    public Map<String, Passenger> getPassengers() {
+        return passengers;
+    }
+
     public void addAddon(String id, AddOnService addon) {
         addons.put(id, addon);
     }

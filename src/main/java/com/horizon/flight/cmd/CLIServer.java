@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.horizon.flight.cmd.menus.FlightMenu;
+import com.horizon.flight.cmd.menus.ManageMenu;
 import com.horizon.flight.cmd.menus.Menu;
 import com.horizon.flight.cmd.menus.PassengerMenu;
 
@@ -30,8 +31,11 @@ public class CLIServer {
     private void initializeMenus() {
         Menu dbMenu = new FlightMenu();
         Menu passengerMenu = new PassengerMenu();
+        Menu manageMenu = new ManageMenu();
+
         menus.put(dbMenu.getName(), dbMenu);
         menus.put(passengerMenu.getName(), passengerMenu);
+        menus.put(manageMenu.getName(), manageMenu);
     }
 
     public void start() {
@@ -90,13 +94,17 @@ public class CLIServer {
             while ((inputLine = in.readLine()) != null) {
                 inputLine = inputLine.trim();
 
+                out.println("===========:::============");
+
                 if (inputLine.equalsIgnoreCase("exit")) {
                     out.println("Goodbye!");
+                    out.println("===========:::============");
                     break;
                 }
 
                 if (inputLine.equalsIgnoreCase("help")) {
                     printGeneralHelp(out);
+                    out.println("===========:::============");
                     continue;
                 }
 
@@ -108,6 +116,7 @@ public class CLIServer {
                     } else {
                         out.println("Unknown menu: " + menuName);
                     }
+                    out.println("===========:::============");
                     continue;
                 }
 
@@ -123,6 +132,8 @@ public class CLIServer {
                 } else {
                     out.println("Unknown command or menu. Type 'help' for available commands.");
                 }
+                out.println("===========:::============");
+
             }
         }
 
