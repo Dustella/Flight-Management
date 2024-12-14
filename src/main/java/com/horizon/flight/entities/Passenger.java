@@ -1,9 +1,10 @@
 package com.horizon.flight.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Passenger {
+public class Passenger implements Serializable {
     //
     public static Integer passengerCount = 0;
     private String name;

@@ -1,5 +1,11 @@
 package com.horizon.flight.cmd;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,13 +15,18 @@ import com.horizon.flight.entities.AirlineCompany;
 import com.horizon.flight.entities.Flight;
 import com.horizon.flight.entities.Passenger;
 
-public class Storage {
+public class Storage implements Serializable {
     private static Storage instance;
-    private final Map<String, AirlineCompany> airlineCompany;
-    private final Map<String, Passenger> passengers;
-    private final Map<String, AddOnService> addons; // 使用AddOnService
+    private boolean hasInitBefore = false;
+    private Map<String, AirlineCompany> airlineCompany;
+    private Map<String, Passenger> passengers;
+    private Map<String, AddOnService> addons; // 使用AddOnService
 
-    private Storage() {
+    public Storage() {
+        if (hasInitBefore) {
+            return;
+        }
+
         airlineCompany = new HashMap<>();
         passengers = new HashMap<>();
         addons = new HashMap<>(); // 初始化addons Map
@@ -46,6 +57,8 @@ public class Storage {
 
         company1.addFlight(flight1);
         company2.addFlight(flight2);
+
+        hasInitBefore = true;
     }
 
     public static synchronized Storage getInstance() {
@@ -53,6 +66,31 @@ public class Storage {
             instance = new Storage();
         }
         return instance;
+    }
+
+    public static void setInstance(Storage storage) {
+        instance = storage;
+    }
+
+    public static void readStorageFromFile(String path)
+            throws IOException, ClassNotFoundException {
+        // Read storage from file using path
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(path))) {
+            instance = (Storage) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw e;
+        }
+
+    }
+
+    public static void dumpStorageToFile(String path) throws IOException {
+        // Write storage to file using path
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))) {
+            out.writeObject(instance);
+        } catch (IOException e) {
+            throw e;
+        }
     }
 
     public Flight getFlight(String flightNumber) {

@@ -1,6 +1,8 @@
 package com.horizon.flight.entities;
 
-public class AddOnService {
+import java.io.Serializable;
+
+public class AddOnService implements Serializable {
     private final String name;
     private final double price;
 

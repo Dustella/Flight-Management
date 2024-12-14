@@ -1,10 +1,11 @@
 package com.horizon.flight.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AirlineCompany {
+public class AirlineCompany implements Serializable {
     private final String name;
     private final List<Flight> flights;
 
@@ -84,6 +85,7 @@ public class AirlineCompany {
         }
         return null;
     }
+
     public boolean cancelFlightByNumber(String flightNumber) {
         if (flightNumber == null || flightNumber.isEmpty()) {
             throw new IllegalArgumentException("Flight number cannot be null or empty.");

@@ -1,8 +1,9 @@
 package com.horizon.flight.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Reservation {
+public class Reservation implements Serializable {
     private Flight flight;
     private TicketCategory ticketCategory;
     private List<AddOnService> addOnServices;

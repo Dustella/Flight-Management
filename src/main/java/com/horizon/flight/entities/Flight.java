@@ -1,10 +1,11 @@
 package com.horizon.flight.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flight {
+public class Flight implements Serializable {
     private final String flightNumber;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
@@ -13,7 +14,7 @@ public class Flight {
     private final int capacity;
     private final List<Passenger> passengers;
     private boolean isOpenForReservation;
-    private List<AddOnService> services; // 用于存储航班提供的增值服务
+    private final List<AddOnService> services; // 用于存储航班提供的增值服务
 
     public Flight(String flightNumber, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureAirport,
             String arrivalAirport, int capacity) {
