@@ -17,18 +17,23 @@ public class FlightManagement {
         }
 
         switch (mode) {
-            case "--mode=client":
+            case "--mode=client" -> {
                 CLIClientJLine client = new CLIClientJLine("localhost", 1234);
                 client.start();
                 return;
-            case "--mode=server":
+            }
+            case "--mode=server" -> {
                 startServer();
                 return;
-            case "--mode=full":
-                break;
-            default:
-                System.err.println("Invalid mode. Use --mode=client, --mode=server, or --mode=full.");
-                System.exit(1);
+            }
+            case "--mode=full" -> {
+            }
+            default -> {
+                if (args.length > 0) {
+                    System.err.println("Invalid mode. Use --mode=client, --mode=server, or --mode=full.");
+                    System.exit(1);
+                }
+            }
         }
 
         prepareStorage();
