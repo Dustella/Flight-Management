@@ -1,3 +1,4 @@
+
 package com.horizon.flight.cmd;
 
 import java.io.BufferedReader;
@@ -10,11 +11,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class CLIClient {
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
+
+public class CLIClientJLine {
     private final String serverAddress;
     private final int serverPort;
 
-    public CLIClient(String serverAddress, int serverPort) {
+    public CLIClientJLine(String serverAddress, int serverPort) {
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
     }
@@ -23,12 +29,13 @@ public class CLIClient {
         try (Socket socket = new Socket(serverAddress, serverPort);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+                Terminal terminal = TerminalBuilder.builder().system(true).build()) {
 
+            LineReader reader = LineReaderBuilder.builder().terminal(terminal).build();
             readServerResponse(in);
 
             while (true) {
-                String fromUser = stdIn.readLine();
+                String fromUser = reader.readLine("> ");
                 if (fromUser == null || "exit".equalsIgnoreCase(fromUser))
                     break;
 
