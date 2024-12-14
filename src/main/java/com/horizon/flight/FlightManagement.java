@@ -42,6 +42,7 @@ public class FlightManagement {
         // client.start();
         CLIClientJLine client = new CLIClientJLine("localhost", 1234);
         client.start();
+        System.exit(0);
 
     }
 

@@ -59,7 +59,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>${exec.mainClass}</mainClass>
+                    <mainClass>com.horizon.flight.FlightManagement</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -71,7 +71,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>${exec.mainClass}</mainClass>
+                            <mainClass>com.horizon.flight.FlightManagement</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -83,7 +83,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>${exec.mainClass}</mainClass>
+                            <mainClass>com.horizon.flight.FlightManagement</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
